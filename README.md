@@ -30,4 +30,14 @@ git pull
 docker compose up -d --build
 ```
 
+## 卸载
+
+```bash
+cd /root/celpic
+docker compose down
+cd /root
+rm -rf /root/celpic
+docker image rm celpic-celpic:latest 2>/dev/null || true
+```
+
 数据库和图片位于 `data/`，请定期备份。不要提交 `.env`、数据库、图片或上传 Token。

@@ -4,21 +4,17 @@ services:
     container_name: celpic
     restart: unless-stopped
     ports:
-      - "${ADMIN_HOST_PORT:-1018}:1018"
-      - "${IMAGE_HOST_PORT:-23133}:23133"
+      - "${PORT:-1018}:1018"
     environment:
       NODE_ENV: production
-      ADMIN_PORT: 1018
-      IMAGE_PORT: 23133
-      DUAL_PORTS: "1"
+      PORT: 1018
       DATA_DIR: /data
       CELPIC_STORAGE_DIR: /data/images
       MAX_UPLOAD_MB: 20
       COOKIE_SECURE: "${COOKIE_SECURE:-0}"
     volumes:
       - ./data:/data
-    # Bind-mounted host directories are commonly root-owned on fresh VPSes.
-    # Running the small single-purpose container as root avoids first-run permission errors.
+    # Single-purpose container; root avoids first-run bind-mount permission errors.
     user: "0:0"
     security_opt:
       - no-new-privileges:true

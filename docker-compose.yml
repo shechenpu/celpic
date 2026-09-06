@@ -1,0 +1,24 @@
+services:
+  celpic:
+    build: .
+    container_name: celpic
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${ADMIN_HOST_PORT:-1018}:1018"
+      - "${BIND_ADDRESS:-127.0.0.1}:${IMAGE_HOST_PORT:-23133}:23133"
+    environment:
+      ADMIN_PORT: 1018
+      IMAGE_PORT: 23133
+      DUAL_PORTS: "1"
+      DATA_DIR: /data
+      MAX_UPLOAD_MB: 20
+      COOKIE_SECURE: "${COOKIE_SECURE:-0}"
+    volumes:
+      - ./data:/data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m

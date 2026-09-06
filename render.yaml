@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: celpic
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/status
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /data
+      - key: CELPIC_STORAGE_DIR
+        value: /data/images
+      - key: COOKIE_SECURE
+        value: "1"
+    disk:
+      name: celpic-data
+      mountPath: /data
+      sizeGB: 10

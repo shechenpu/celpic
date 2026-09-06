@@ -1,0 +1,10 @@
+data/*
+!data/.gitkeep
+storage/*
+!storage/.gitkeep
+.qa-*/
+node_modules/
+.env
+*.log
+
+.celpic-checkpoints/

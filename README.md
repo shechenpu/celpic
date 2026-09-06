@@ -27,6 +27,7 @@ docker compose up -d --build
 ## 更新
 
 ```bash
+cd /root
 git pull
 docker compose up -d --build
 ```

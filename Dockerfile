@@ -8,7 +8,6 @@ RUN mkdir -p /data/images && chown -R node:node /data
 USER node
 EXPOSE 1018 23133
 VOLUME ["/data"]
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 CMD-SHELL node -e "const p=process.env.PORT||process.env.ADMIN_PORT; fetch('http://127.0.0.1:'+p+'/api/status').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 CMD ["node", "server.js"]
 
 

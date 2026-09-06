@@ -5,6 +5,7 @@
 ## 一键部署
 
 ```bash
+cd /root
 git clone https://github.com/shechenpu/celpic.git
 cd celpic
 cp .env.example .env
